@@ -6,6 +6,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 public record Award(
@@ -33,7 +34,7 @@ public record Award(
                 : DataResult.success(value);
         return Codec.INT.optionalFieldOf(name).flatXmap(
                 optional -> optional.isEmpty() ? DataResult.success(defaultValue) : rangeCheck.apply(optional.get()),
-                value -> DataResult.success(java.util.Optional.of(value))
+                value -> DataResult.success(Optional.of(value))
         );
     }
 

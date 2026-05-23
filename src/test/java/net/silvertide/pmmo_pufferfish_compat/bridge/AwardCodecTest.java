@@ -7,6 +7,8 @@ import com.mojang.serialization.JsonOps;
 import net.minecraft.resources.ResourceLocation;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -171,7 +173,7 @@ class AwardCodecTest {
 
     @Test
     void skillMappingCodecRoundTrip() {
-        SkillMapping original = new SkillMapping("mining", java.util.List.of(
+        SkillMapping original = new SkillMapping("mining", List.of(
                 new Award(ResourceLocation.fromNamespaceAndPath("p", "a"),
                         1, 1, 1, Award.UNBOUNDED, Reconcile.ADDITIVE),
                 new Award(ResourceLocation.fromNamespaceAndPath("p", "b"),
