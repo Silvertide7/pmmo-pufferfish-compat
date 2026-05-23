@@ -29,6 +29,7 @@ sourceSets.main.resources {
 
 repositories {
     mavenLocal()
+    mavenCentral()
     maven {
         url 'https://cursemaven.com'
         content { includeGroup 'curse.maven' }
@@ -112,6 +113,11 @@ neoForge {
             sourceSet(sourceSets.main)
         }
     }
+
+    unitTest {
+        enable()
+        testedMod = mods."${mod_id}"
+    }
 }
 
 // Sets up a dependency configuration called 'localRuntime'.
@@ -125,6 +131,14 @@ configurations {
 dependencies {
     implementation "curse.maven:pmmo-353935:${pmmo_version}"
     implementation "curse.maven:puffish-skills-835091:${pufferfish_version}"
+
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
