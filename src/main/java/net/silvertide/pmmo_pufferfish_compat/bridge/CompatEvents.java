@@ -9,6 +9,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.silvertide.pmmo_pufferfish_compat.PMMOPufferfishCompat;
 
 @EventBusSubscriber(modid = PMMOPufferfishCompat.MODID)
@@ -20,6 +21,10 @@ public final class CompatEvents {
         event.addListener(PMMOPufferfishCompat.skillMapListener());
     }
 
+    @SubscribeEvent
+    public static void onRegisterCommands(RegisterCommandsEvent event) {
+        event.getDispatcher().register(BridgeCommand.root());
+    }
 
     @SubscribeEvent
     public static void onDatapackSync(OnDatapackSyncEvent event) {
